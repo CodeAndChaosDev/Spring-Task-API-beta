@@ -19,4 +19,8 @@ public class Task {
     private String title;
     private String description;
     private Boolean completed;
+
+    public String getTitle(){
+        return title;
+    }
 }
