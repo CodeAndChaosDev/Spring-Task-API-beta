@@ -29,4 +29,8 @@ public class WorkSpace {
     private List<User> users; 
 
 
+    public String getDescription() {
+        return description;
+    }
+
 }

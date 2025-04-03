@@ -23,4 +23,8 @@ public class Task {
     public String getTitle(){
         return title;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "workspace_id", nullable = true)
+    private WorkSpace workspace;
 }

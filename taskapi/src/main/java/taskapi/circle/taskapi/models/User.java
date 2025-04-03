@@ -23,5 +23,9 @@ public class User {
     private String role;
     private String createdAt;
     private String updatedAt;
+ 
+    @ManyToOne
+    @JoinColumn(name = "workspace_id", nullable = true)
+    private WorkSpace workspace; 
     
 }
