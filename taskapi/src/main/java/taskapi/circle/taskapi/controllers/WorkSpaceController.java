@@ -2,6 +2,7 @@ package taskapi.circle.taskapi.controllers;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import taskapi.circle.taskapi.models.WorkSpace;
@@ -23,7 +24,7 @@ public class WorkSpaceController {
     }
     @GetMapping("/{id}")
     public WorkSpace getWorkSpaceById(@PathVariable Long id) {
-        return workSpaceService.getWorkSpaceById(id);
+        return workSpaceService.getWorkspaceWithDetails(id);
     }
     @PostMapping
     public WorkSpace createWorkSpace(@RequestBody WorkSpace workSpace) {
@@ -57,5 +58,21 @@ public class WorkSpaceController {
     public List<WorkSpace> getWorkSpacesByNameAndDescriptionAndId(@PathVariable String name, @PathVariable String description, @PathVariable Long id) {
         return workSpaceService.findByNameAndDescriptionAndId(name, description, id);
     }
+
+     // API to add an existing task to a workspace
+    @PutMapping("/{workspaceId}/tasks/{taskId}")
+    public ResponseEntity<WorkSpace> addTaskToWorkspace(
+            @PathVariable Long workspaceId, @PathVariable Long taskId) {
+        WorkSpace updatedWorkspace = workSpaceService.addTaskToWorkspace(workspaceId, taskId);
+        return ResponseEntity.ok(updatedWorkspace);
+    }
+
+     // API to add an existing user to a workspace
+     @PutMapping("/{workspaceId}/users/{userId}")
+     public ResponseEntity<WorkSpace> addUserToWorkspace(
+             @PathVariable Long workspaceId, @PathVariable Long userId) {
+         WorkSpace updatedWorkspace = workSpaceService.addUserToWorkspace(workspaceId, userId);
+         return ResponseEntity.ok(updatedWorkspace);
+     }
 }
     

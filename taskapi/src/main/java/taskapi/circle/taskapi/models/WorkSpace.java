@@ -3,6 +3,8 @@ package taskapi.circle.taskapi.models;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,13 +26,15 @@ public class WorkSpace {
     private String ownerId;
 
     @OneToMany(mappedBy = "workspace", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Task> tasks; 
     @OneToMany(mappedBy = "workspace", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<User> users; 
 
 
     public String getDescription() {
         return description;
     }
-
+    // TODO fix this method to return List of users and tasks associated with the workspace
 }
